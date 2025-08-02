@@ -27,7 +27,7 @@ function App() {
   return (
     <div style={styles.page}>
       <div style={styles.card}>
-        <h1 style={styles.title}>👋 Selamlaşma Uygulaması</h1>
+        <h1 style={styles.title}>👋 Yazar mısın buraya ? </h1>
 
         <input
           type="text"
@@ -75,8 +75,9 @@ const styles = {
   },
   input: {
     padding: "12px 16px",
-    width: "100%",
+    width: "90%",
     border: "1px solid #ccc",
+    maxWidth: "400px",
     borderRadius: "8px",
     marginBottom: "16px",
     fontSize: "16px"
