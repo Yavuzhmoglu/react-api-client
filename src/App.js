@@ -26,7 +26,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 
-const intervals = ["15m", "1h", "4h", "1d"].map((i) => ({ label: i, value: i }));
+const intervals = ["1m","15m", "1h", "4h", "1d"].map((i) => ({ label: i, value: i }));
 const ranges = ["1d", "5d","10d","20d", "1mo", "3mo", "6mo","1y"].map((r) => ({ label: r, value: r }));
 const pageSizeOptions = [5, 10, 20, 50, 100].map((r) => ({ label: `${r} kayıt`, value: r }));
 
