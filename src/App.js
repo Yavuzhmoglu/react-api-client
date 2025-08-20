@@ -25,9 +25,11 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
+import SignalsTable from "./SignalsTable.jsx";
 
-const intervals = ["1m","15m", "1h", "4h", "1d"].map((i) => ({ label: i, value: i }));
-const ranges = ["1d", "5d","10d","20d", "1mo", "3mo", "6mo","1y"].map((r) => ({ label: r, value: r }));
+
+const intervals = ["1m", "15m", "1h", "4h", "1d"].map((i) => ({ label: i, value: i }));
+const ranges = ["1d", "5d", "10d", "20d", "1mo", "3mo", "6mo", "1y"].map((r) => ({ label: r, value: r }));
 const pageSizeOptions = [5, 10, 20, 50, 100].map((r) => ({ label: `${r} kayıt`, value: r }));
 
 function App() {
@@ -103,6 +105,10 @@ function App() {
 
   return (
     <div className="p-4 surface-ground min-h-screen flex flex-column align-items-center justify-content-start">
+    
+            <SignalsTable />
+          
+
       <Card title="📊 BIST Veri Sorgulama" className="w-full md:w-8 lg:w-6">
         <div className="p-fluid grid formgrid">
           <div className="field col-12">
@@ -145,6 +151,7 @@ function App() {
           </div>
         </div>
       </Card>
+      
 
       {error && (
         <Card className="w-full md:w-10 mt-3 p-error">
@@ -295,7 +302,7 @@ function App() {
                 header="Tarih"
                 sortable
                 filter
-               
+
               />
               <Column field="acilis" header="Açılış" sortable filter />
               <Column field="yüksek" header="Yüksek" sortable filter />
@@ -304,6 +311,7 @@ function App() {
               <Column field="hacim" header="Hacim" sortable filter />
             </DataTable>
           </Card>
+          
         </>
       )}
     </div>
