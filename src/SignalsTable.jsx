@@ -55,8 +55,8 @@ export default function SignalsTable() {
     const fetchSignals = async () => {
         try {
             setLoading(true);
-            // const url = `https://dotnet-api-bist.onrender.com/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
-            const url = `http://localhost:5109/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
+            const url = `https://dotnet-api-bist.onrender.com/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
+            // const url = `http://localhost:5109/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
 
 
             const res = await axios.get(url);
