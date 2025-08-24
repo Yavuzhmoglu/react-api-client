@@ -55,6 +55,7 @@ export default function SignalsTable() {
         { label: "5 Gün", value: "5d" },
         { label: "15 Gün", value: "15d" },
         { label: "1 Ay", value: "1mo" },
+        { label: "3 Ay", value: "3mo" },
         { label: "6 Ay", value: "6mo" },
         { label: "1 yıl", value: "1y" },
     ];
