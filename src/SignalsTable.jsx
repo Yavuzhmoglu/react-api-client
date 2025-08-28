@@ -227,6 +227,9 @@ export default function SignalsTable() {
                             </span>
                         )}
                     />
+                    
+                     <Column field="suggestedAction" header="Emir" sortable filter />
+                     <Column field="score" header="Skor" sortable filter />
                     <Column field="reason" header="Açıklama" sortable filter />
                 </DataTable>
             </Card>
