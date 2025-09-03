@@ -63,8 +63,8 @@ export default function SignalsTable() {
     const fetchSignals = async () => {
         try {
             setLoading(true);
-            const url = `https://dotnet-api-bist.onrender.com/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
-            // const url = `http://localhost:5109/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}`;
+            const url = `https://dotnet-api-bist.onrender.com/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}&backtest=3`;
+            // const url = `http://localhost:5109/api/WhaleSignals?symbols=${latestSymbols.current}&interval=${latestInterval.current}&range=${latestRange.current}&backtest=3`;
 
 
             const res = await axios.get(url);
@@ -228,8 +228,8 @@ export default function SignalsTable() {
                         )}
                     />
                     
-                     <Column field="suggestedAction" header="Emir" sortable filter />
-                     <Column field="score" header="Skor" sortable filter />
+                     <Column field="confidence" header="Guven Yuzdesi" sortable filter />
+                     <Column field="score" header="Backtest Score" sortable filter />
                     <Column field="reason" header="Açıklama" sortable filter />
                 </DataTable>
             </Card>
