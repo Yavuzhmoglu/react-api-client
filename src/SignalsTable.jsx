@@ -219,7 +219,7 @@ return (
           <Column field="time" header="Zaman" sortable filter />
           <Column field="symbol" header="Sembol" sortable filter />
           <Column field="value" header="Deger" sortable filter />
-          <Column field="open" header="Açılış" sortable filter />
+          {/* <Column field="open" header="Açılış" sortable filter /> */}
           <Column
             field="action"
             header="Sinyal"
@@ -241,7 +241,7 @@ return (
               </span>
             )}
           />
-          <Column field="confidence" header="Guven Yuzdesi" sortable filter />
+          {/* <Column field="confidence" header="Guven Yuzdesi" sortable filter /> */}
           <Column field="score" header="Backtest Score" sortable filter />
           <Column field="reason" header="Açıklama" sortable filter />
         </DataTable>
