@@ -192,7 +192,7 @@ export default function SignalsTable() {
                     paginator
                     rows={15}
                     stripedRows
-                    responsiveLayout="scroll"
+                    scrollable
                     sortMode="multiple"
                     removableSort
                     globalFilter={globalFilter}
