@@ -122,127 +122,132 @@ export default function SignalsTable() {
     };
 
 
+return (
+  <div className="p-4">
+    <Card title="🐋 Whale Intel - Balina Sinyalleri" className="shadow-lg">
+      {/* Üstteki filtre ve kontrol butonları */}
+      <div className="flex flex-wrap gap-2 mb-4 items-center">
+        <InputText
+          value={symbols}
+          onChange={(e) => setSymbols(e.target.value)}
+          placeholder="Semboller (örn: ASELS.IS,THYAO.IS)"
+          className="p-inputtext-sm flex-1 w-full md:w-auto"
+        />
+        <Dropdown
+          value={selectedInterval}
+          options={intervalOptions}
+          onChange={(e) => setSelectedInterval(e.value)}
+          placeholder="Interval"
+          className="w-full md:w-auto"
+        />
+        <Dropdown
+          value={selectedRange}
+          options={rangeOptions}
+          onChange={(e) => setSelectedRange(e.value)}
+          placeholder="Range"
+          className="w-full md:w-auto"
+        />
+        <Button
+          label="Yenile"
+          icon="pi pi-refresh"
+          onClick={fetchSignals}
+          loading={loading}
+          className="w-full md:w-auto"
+        />
+        <Button
+          label="Başlat"
+          icon="pi pi-play"
+          className="p-button-success w-full md:w-auto"
+          onClick={startAutoRefresh}
+        />
+        <Button
+          label="Durdur"
+          icon="pi pi-stop"
+          className="p-button-danger w-full md:w-auto"
+          onClick={stopAutoRefresh}
+        />
+      </div>
 
-    return (
-        <div className="p-4">
-            <Card title="🐋 Whale Intel - Balina Sinyalleri" className="shadow-lg">
-                <div className="flex flex-wrap gap-2 mb-4 items-center">
-                    <InputText
-                        value={symbols}
-                        onChange={(e) => setSymbols(e.target.value)}
-                        placeholder="Semboller (örn: ASELS.IS,THYAO.IS)"
-                        className="p-inputtext-sm flex-1 w-full md:w-auto"
-                    />
-                    <Dropdown
-                        value={selectedInterval}
-                        options={intervalOptions}
-                        onChange={(e) => setSelectedInterval(e.value)}
-                        placeholder="Interval"
-                        className="w-full md:w-auto"
-                    />
-                    <Dropdown
-                        value={selectedRange}
-                        options={rangeOptions}
-                        onChange={(e) => setSelectedRange(e.value)}
-                        placeholder="Range"
-                        className="w-full md:w-auto"
-                    />
-                    <Button
-                        label="Yenile"
-                        icon="pi pi-refresh"
-                        onClick={fetchSignals}
-                        loading={loading}
-                        className="w-full md:w-auto"
-                    />
-                    <Button
-                        label="Başlat"
-                        icon="pi pi-play"
-                        className="p-button-success w-full md:w-auto"
-                        onClick={startAutoRefresh}
-                    />
-                    <Button
-                        label="Durdur"
-                        icon="pi pi-stop"
-                        className="p-button-danger w-full md:w-auto"
-                        onClick={stopAutoRefresh}
-                    />
-                </div>
+      {/* Excel Export */}
+      <Button
+        icon="pi pi-file-excel"
+        label="Excel'e Aktar"
+        className="p-button-success mb-3 w-full md:w-auto"
+        onClick={exportCSV}
+      />
 
-                <Button
-                    icon="pi pi-file-excel"
-                    label="Excel'e Aktar"
-                    className="p-button-success mb-3 w-full md:w-auto"
-                    onClick={exportCSV}
-                />
+      {/* Arama kutusu */}
+      <div className="flex justify-end mb-2">
+        <span className="p-input-icon-left w-full md:w-auto">
+          <i className="pi pi-search" />
+          <InputText
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            placeholder="Tabloda Ara..."
+            className="w-full md:w-auto"
+          />
+        </span>
+      </div>
 
-                <div className="flex justify-end mb-2">
-                    <span className="p-input-icon-left w-full md:w-auto">
-                        <i className="pi pi-search" />
-                        <InputText
-                            value={globalFilter}
-                            onChange={(e) => setGlobalFilter(e.target.value)}
-                            placeholder="Tabloda Ara..."
-                            className="w-full md:w-auto"
-                        />
-                    </span>
-                </div>
+      {/* Tablo */}
+      <div className="overflow-x-auto">
+        <DataTable
+          value={signals}
+          paginator
+          rows={15}
+          stripedRows
+          scrollable
+          className="min-w-[700px] text-sm md:text-base"
+          sortMode="multiple"
+          removableSort
+          globalFilter={globalFilter}
+          rowsPerPageOptions={[5, 10, 20, 50, 100]}
+          emptyMessage="Sinyal bulunamadı."
+          rowClassName={(row) => {
+            let base = "";
+            if (row.action === "Alış") base = "bg-green-50";
+            if (row.action === "Satış") base = "bg-red-50";
+            if (row.action === "Toplama") base = "bg-blue-50";
+            if (row.action === "Dağıtım") base = "bg-yellow-50";
 
-                <DataTable
-                    value={signals}
-                    paginator
-                    rows={15}
-                    stripedRows
-                    scrollable
-                    sortMode="multiple"
-                    removableSort
-                    globalFilter={globalFilter}
-                    rowsPerPageOptions={[5, 10, 20, 50, 100]}
-                    emptyMessage="Sinyal bulunamadı."
-                    className="text-sm md:text-base"
-                    rowClassName={(row) => {
-                        let base = "";
-                        if (row.action === "Alış") base = "bg-green-50";
-                        if (row.action === "Satış") base = "bg-red-50";
-                        if (row.action === "Toplama") base = "bg-blue-50";
-                        if (row.action === "Dağıtım") base = "bg-yellow-50";
+            if (highlightedRows.includes(row.time + row.symbol)) {
+              return base + " flash";
+            }
+            return base;
+          }}
+        >
+          <Column field="time" header="Zaman" sortable filter />
+          <Column field="symbol" header="Sembol" sortable filter />
+          <Column field="value" header="Deger" sortable filter />
+          <Column field="open" header="Açılış" sortable filter />
+          <Column
+            field="action"
+            header="Sinyal"
+            sortable
+            filter
+            body={(row) => (
+              <span
+                className={
+                  row.action === "Alış"
+                    ? "text-green-600 font-bold"
+                    : row.action === "Satış"
+                    ? "text-red-600 font-bold"
+                    : row.action === "Toplama"
+                    ? "text-blue-600 font-bold"
+                    : "text-yellow-600 font-bold"
+                }
+              >
+                {row.action}
+              </span>
+            )}
+          />
+          <Column field="confidence" header="Guven Yuzdesi" sortable filter />
+          <Column field="score" header="Backtest Score" sortable filter />
+          <Column field="reason" header="Açıklama" sortable filter />
+        </DataTable>
+      </div>
+    </Card>
+  </div>
+);
 
-                        if (highlightedRows.includes(row.time + row.symbol)) {
-                            return base + " flash";
-                        }
-                        return base;
-                    }}
-                >
-                    <Column field="time" header="Zaman" sortable filter />
-                    <Column field="symbol" header="Sembol" sortable filter />
-                    <Column field="value" header="Deger" sortable filter />
-                    <Column field="open" header="Açılış" sortable filter />
-                    <Column
-                        field="action"
-                        header="Sinyal"
-                        sortable
-                        filter
-                        body={(row) => (
-                            <span
-                                className={
-                                    row.action === "Alış"
-                                        ? "text-green-600 font-bold"
-                                        : row.action === "Satış"
-                                            ? "text-red-600 font-bold"
-                                            : row.action === "Toplama"
-                                                ? "text-blue-600 font-bold"
-                                                : "text-yellow-600 font-bold"
-                                }
-                            >
-                                {row.action}
-                            </span>
-                        )}
-                    />
-                    <Column field="confidence" header="Guven Yuzdesi" sortable filter />
-                    <Column field="score" header="Backtest Score" sortable filter />
-                    <Column field="reason" header="Açıklama" sortable filter />
-                </DataTable>
-            </Card>
-        </div>
-
-    );
 }

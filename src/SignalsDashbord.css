@@ -13,34 +13,25 @@
     background-color: inherit !important;
   }
 }
-
-/* iPhone 16e ve benzeri küçük ekranlar için özelleştirme */
+/* iPhone 16e gibi küçük ekranlar için */
 @media screen and (max-width: 430px) {
   .p-card {
-    padding: 0.5rem !important; /* Kart içi boşluk daralt */
+    padding: 0.5rem !important;
   }
 
   .p-inputtext,
   .p-dropdown,
   .p-button {
-    width: 100% !important; /* Input, dropdown ve butonlar full genişlik */
-    margin-bottom: 0.5rem; /* Alt alta boşluk */
+    width: 100% !important;
+    margin-bottom: 0.5rem;
   }
 
   .p-datatable {
-    font-size: 0.8rem; /* Yazı boyutunu küçült */
-  }
-
-  .p-datatable-wrapper {
-    overflow-x: auto; /* Tablo yatay kaydırılabilir olsun */
-  }
-
-  .p-datatable table {
-    min-width: 700px; /* Küçük ekranda tablo taşsın ve scroll çalışsın */
+    font-size: 0.8rem;
   }
 
   .p-card-title {
-    font-size: 1rem !important; /* Başlık küçült */
-    text-align: center; /* Başlığı ortala */
+    font-size: 1rem !important;
+    text-align: center;
   }
 }

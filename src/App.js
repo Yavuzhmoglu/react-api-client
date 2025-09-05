@@ -104,7 +104,7 @@ function App() {
   };
 
   return (
-    <div className="p-4 surface-ground min-h-screen flex flex-column align-items-center justify-content-start">
+    <div className="p-4">
     
             <SignalsTable />
           
