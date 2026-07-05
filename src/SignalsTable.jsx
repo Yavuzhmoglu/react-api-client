@@ -126,7 +126,7 @@ export default function SignalsTable() {
 
 return (
   <div className="p-4">
-    <Card title="🐋 Whale Intel - Balina Sinyalleri" className="shadow-lg">
+    <Card title="🐋 Yavuz Intel - Balina Sinyalleri" className="shadow-lg">
       <p className="text-sm text-500 mb-3">
         Anomali Skoru: 0 = normal, 100 = aşırı uç (istatistiksel olarak dikkat çekici). Yön bilgisi
         Sinyal sütununda: Toplama/Alış = pozitif yönlü, Dağıtım/Satış = negatif yönlü.
